@@ -63,12 +63,18 @@
             android:text="@string/oceny"
             android:layout_below="@id/input3">
         </Button>
-
+        <TextView
+            android:id="@+id/text4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/button1"
+            android:textSize="18sp"
+            android:layout_marginEnd="10dp" />
         <Button
             android:id="@+id/button_exit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/button1"
+            android:layout_below="@id/text4"
             android:visibility="invisible"/>
 
 </RelativeLayout>

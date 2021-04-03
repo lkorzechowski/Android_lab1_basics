@@ -9,12 +9,12 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
     boolean[] condition = {false, false, false};
-    protected int liczba;
     public boolean verifyCompletion(){
         return condition[0] && condition[1] && condition[2];
     }
@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
     public void buttonShowHide(){
         Button button = findViewById(R.id.button1);
         if(verifyCompletion()) button.setVisibility(View.VISIBLE);
-        else button.setVisibility(View.GONE);
+        else button.setVisibility(View.INVISIBLE);
     }
     /**
                 Wpisane dane sa dostepne po obroceniu i tak i tak
@@ -53,31 +53,61 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onResume() {
-        super.onResume();
-        Button button2 = findViewById(R.id.button_exit);
-        button2.setVisibility(View.VISIBLE);
         Bundle pakunek = getIntent().getExtras();
-
+        super.onResume();
+        if(pakunek!=null) {
+            Button button = findViewById(R.id.button_exit);
+            TextView text = findViewById(R.id.text4);
+            button.setVisibility(View.VISIBLE);
+            int suma = 0;
+            for (int i = 0; i < pakunek.getInt("liczba"); i++) {
+                suma = suma + pakunek.getInt("ocena"+i);
+            }
+            float srednia = (float) suma / pakunek.getInt("liczba");
+            if (srednia > 3) {
+                text.setText((CharSequence) ("Gratulacje, twoja średnia to: " + srednia));
+                button.setText((CharSequence) "Super!");
+            } else {
+                text.setText((CharSequence) ("Niestety, twoja średnia to jedynie: " + srednia));
+                button.setText((CharSequence) "Tym razem mi nie poszło.");
+            }
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (srednia > 3){
+                        Toast komunikat = Toast.makeText(getApplicationContext(),
+                                "Gratulacje! Otrzymujesz Zaliczenie!", Toast.LENGTH_SHORT);
+                        komunikat.show();
+                    } else {
+                        Toast komunikat = Toast.makeText(getApplicationContext(),
+                                "Wysyłam podanie o zaliczenie warunkowe.", Toast.LENGTH_SHORT);
+                        komunikat.show();
+                    }
+                    finishAffinity();
+                }
+            });
+        }
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Button button1 = findViewById(R.id.button1);
-        button1.setVisibility(View.GONE);
+        Button button = findViewById(R.id.button1);
+        button.setVisibility(View.INVISIBLE);
         EditText input1 = findViewById(R.id.input1);
         EditText input2 = findViewById(R.id.input2);
         EditText input3 = findViewById(R.id.input3);
 
-        button1.setOnClickListener(new View.OnClickListener() {
+        button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                liczba = Integer.parseInt(input3.getText().toString());
+                int liczba = Integer.parseInt(input3.getText().toString());
                 Intent toRecycle = new Intent(MainActivity.this, Recycler.class);
                 toRecycle.putExtra("imie", input1.getText().toString());
                 toRecycle.putExtra("nazwisko", input2.getText().toString());
                 toRecycle.putExtra("liczba", liczba);
+                button.setVisibility(View.INVISIBLE);
                 startActivity(toRecycle);
             }
         });

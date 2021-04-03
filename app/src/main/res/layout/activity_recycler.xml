@@ -4,20 +4,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Recycler">
-    <RelativeLayout
-        android:id="@+id/recycler_container"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/lista_ocen_rv"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/lista_ocen_rv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:listitem="@layout/wiersz_oceny" />
-    </RelativeLayout>
+        android:layout_height="wrap_content"
+        tools:listitem="@layout/wiersz_oceny"
+        android:layout_marginBottom="50dp"/>
     <Button
         android:id="@+id/przycisk_po_ankiecie"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/oblicz_srednia"
-        android:layout_below="@id/recycler_container" />
+        android:layout_alignParentBottom="true" />
 </RelativeLayout>
