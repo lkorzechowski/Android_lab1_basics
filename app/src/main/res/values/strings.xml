@@ -1,0 +1,34 @@
+<resources>
+    <string name="app_name">lab1-GUI</string>
+    <string name="liczba_ocen">Liczba Ocen:</string>
+    <string name="podaj_liczbe_ocen">Podaj Liczbę ocen</string>
+    <string name="podaj_nazwisko">Podaj nazwisko</string>
+    <string name="podaj_imie">Podaj imię</string>
+    <string name="oceny">Oceny</string>
+    <string name="imie">Imię:</string>
+    <string name="nazwisko">Nazwisko:</string>
+    <string name="_2">2</string>
+    <string name="_3">3</string>
+    <string name="_4">4</string>
+    <string name="_5">5</string>
+    <string name="oblicz_srednia">Oblicz średnią</string>
+
+    <string-array name="przedmioty">
+        <item>Fiz.</item>
+        <item>Mat.</item>
+        <item>El.</item>
+        <item>TC</item>
+        <item>PP</item>
+        <item>AB</item>
+        <item>BA</item>
+        <item>CC</item>
+        <item>DD</item>
+        <item>AC</item>
+        <item>QQ</item>
+        <item>BS</item>
+        <item>KK</item>
+        <item>PS</item>
+        <item>EE</item>
+        <item>LL</item>
+    </string-array>
+</resources>

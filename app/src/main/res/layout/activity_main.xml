@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+        <TextView
+            android:id="@+id/text1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@id/input1"
+            android:textSize="18sp"
+            android:layout_marginEnd="10dp"
+            android:text="@string/imie"/>
+        <EditText
+            android:id="@+id/input1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_toEndOf="@id/text1"
+            android:inputType="textPersonName"
+            android:hint="@string/podaj_imie" />
+        <TextView
+            android:id="@+id/text2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@id/input2"
+            android:textSize="18sp"
+            android:layout_marginEnd="10dp"
+            android:text="@string/nazwisko"/>
+        <EditText
+            android:id="@+id/input2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:inputType="textPersonName"
+            android:layout_toEndOf="@id/text2"
+            android:hint="@string/podaj_nazwisko"
+            android:layout_below="@+id/input1"/>
+        <TextView
+            android:id="@+id/text3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@id/input3"
+            android:textSize="18sp"
+            android:layout_marginEnd="10dp"
+            android:text="@string/liczba_ocen"/>
+        <EditText
+            android:id="@+id/input3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:inputType="textPersonName"
+            android:layout_toEndOf="@id/text3"
+            android:hint="@string/podaj_liczbe_ocen"
+            android:autofillHints="true"
+            android:layout_below="@id/input2"/>
+        <Button
+            android:id="@+id/button1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/oceny"
+            android:layout_below="@id/input3">
+        </Button>
+
+        <Button
+            android:id="@+id/button_exit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/button1"
+            android:visibility="invisible"/>
+
+</RelativeLayout>
