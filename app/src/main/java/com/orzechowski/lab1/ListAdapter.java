@@ -49,8 +49,6 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.OcenyViewHolde
                     for(int i = 0; i < mListaOcen.size(); i++) idZaznaczonych.add(null);
                 }
                 idZaznaczonych.set((Integer)group.getTag(), checkedId);
-                System.out.println(group.getTag());
-                System.out.println(checkedId);
             }
         });
         this.numerWiersza++;
