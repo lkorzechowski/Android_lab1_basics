@@ -24,21 +24,6 @@ public class MainActivity extends AppCompatActivity {
         if(verifyCompletion()) button.setVisibility(View.VISIBLE);
         else button.setVisibility(View.INVISIBLE);
     }
-    /**
-                Wpisane dane sa dostepne po obroceniu i tak i tak
-    @Override
-    protected void onRestoreInstanceState(Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
-        EditText input1 = findViewById(R.id.input1);
-        EditText input2 = findViewById(R.id.input2);
-        EditText input3 = findViewById(R.id.input3);
-        String[] array = savedInstanceState.getStringArray("dostep");
-
-        input1.setText(array[0]);
-        input2.setText(array[1]);
-        input3.setText(array[2]);
-    }
-     **/
 
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
@@ -65,11 +50,11 @@ public class MainActivity extends AppCompatActivity {
             }
             float srednia = (float) suma / pakunek.getInt("liczba");
             if (srednia > 3) {
-                text.setText((CharSequence) ("Gratulacje, twoja średnia to: " + srednia));
-                button.setText((CharSequence) "Super!");
+                text.setText("Gratulacje, twoja średnia to: " + srednia);
+                button.setText("Super!");
             } else {
-                text.setText((CharSequence) ("Niestety, twoja średnia to jedynie: " + srednia));
-                button.setText((CharSequence) "Tym razem mi nie poszło.");
+                text.setText("Niestety, twoja średnia to jedynie: " + srednia);
+                button.setText("Tym razem mi nie poszło.");
             }
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -209,16 +194,4 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-    /**
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        EditText input1 = findViewById(R.id.input1);
-        EditText input2 = findViewById(R.id.input2);
-        EditText input3 = findViewById(R.id.input3);
-        String[] array = {input1.getText().toString(), input2.getText().toString(), input3.getText().toString()};
-
-        outState.putStringArray("dostep", array);
-        super.onSaveInstanceState(outState);
-    }
-    **/
 }

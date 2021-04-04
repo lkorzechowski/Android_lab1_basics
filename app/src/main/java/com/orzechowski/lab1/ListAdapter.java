@@ -10,11 +10,13 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.LinkedList;
 import java.util.List;
 
 public class ListAdapter extends RecyclerView.Adapter<ListAdapter.OcenyViewHolder> {
-    private List<ModelOceny> mListaOcen;
-    private LayoutInflater mPompka;
+    private final List<ModelOceny> mListaOcen;
+    private List<Integer> idZaznaczonych;
+    private final LayoutInflater mPompka;
     private int numerWiersza = 0;
 
     public ListAdapter(Activity kontekst, List<ModelOceny> listaOcen) {
@@ -22,19 +24,35 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.OcenyViewHolde
         this.mListaOcen = listaOcen;
     }
 
+    public List<Integer> getIdZaznaczonych() {
+        return idZaznaczonych;
+    }
+
     @NonNull
     @Override
     public OcenyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
         View wiersz = mPompka.inflate(R.layout.wiersz_oceny, null);
-        TextView label = wiersz.findViewById(R.id.textViewer);
-        label.setText(mListaOcen.get(numerWiersza).getNazwa());
         return new OcenyViewHolder(wiersz);
     }
 
     @Override
     public void onBindViewHolder(@NonNull OcenyViewHolder ocenyViewHolder, int numerWiersza) {
+        TextView label = ocenyViewHolder.itemView.findViewById(R.id.textViewer);
+        label.setText(mListaOcen.get(numerWiersza).getNazwa());
         RadioGroup group = ocenyViewHolder.itemView.findViewById(R.id.grupa);
         group.setTag(this.numerWiersza);
+        group.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                if(idZaznaczonych==null){
+                    idZaznaczonych = new LinkedList<>();
+                    for(int i = 0; i < mListaOcen.size(); i++) idZaznaczonych.add(null);
+                }
+                idZaznaczonych.set((Integer)group.getTag(), checkedId);
+                System.out.println(group.getTag());
+                System.out.println(checkedId);
+            }
+        });
         this.numerWiersza++;
     }
 
@@ -50,8 +68,6 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.OcenyViewHolde
         }
 
         @Override
-        public void onCheckedChanged(RadioGroup group, int checkedId) {
-
-        }
+        public void onCheckedChanged(RadioGroup group, int checkedId) {}
     }
 }
